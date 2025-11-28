@@ -16,7 +16,7 @@ plt.rcParams['font.sans-serif'] = ['SimHei']
 plt.rcParams['axes.unicode_minus'] = False  
 
 # Main function
-def main(file, xkey='x', ykey='y', fmt='png'):
+def main(file, xkey, ykey, fmt):
     print(file, xkey, ykey, fmt)
 
     data = pd.read_csv(file)
@@ -37,5 +37,5 @@ def main(file, xkey='x', ykey='y', fmt='png'):
 # Run
 if __name__ == '__main__':
     args = parser.parse_args()
-    main(args)
+    main(*args)
     sys.exit(0)
