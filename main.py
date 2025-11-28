@@ -16,7 +16,7 @@ plt.rcParams['font.sans-serif'] = ['SimHei']
 plt.rcParams['axes.unicode_minus'] = False  
 
 # Main function
-def main(file, xkey, ykey, fmt):
+def main(file, xkey='x', ykey='y', fmt='png'):
     print(file, xkey, ykey, fmt)
 
     data = pd.read_csv(file)
