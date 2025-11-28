@@ -24,8 +24,8 @@ def main(file, xkey, ykey, fmt):
     xs = np.array(data[xkey])
     ys = np.array(data[ykey])
 
-    plt.set_xlabel(xkey, fontsize=12)
-    plt.set_ylabel(ykey, fontsize=12)
+    plt.xlabel(xkey, fontsize=12)
+    plt.ylabel(ykey, fontsize=12)
 
     output_name = f'output{"." if fmt[0]!="." else ""}{fmt}'
     plt.plot(xs, ys)
