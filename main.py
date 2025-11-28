@@ -27,7 +27,7 @@ def main(file, xkey, ykey, fmt):
     plt.set_xlabel(xkey, fontsize=12)
     plt.set_ylabel(ykey, fontsize=12)
 
-    output_name = f'output{'.' if fmt[0]!='.' else ''}{fmt}'
+    output_name = f'output{"." if fmt[0]!="." else ""}{fmt}'
     plt.plot(xs, ys)
     plt.savefig(output_name, bbox_inches='tight')
     print(f'Graphic saved to {output_name} successfully. ')
