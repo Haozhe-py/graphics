@@ -37,5 +37,5 @@ def main(file, xkey, ykey, fmt):
 # Run
 if __name__ == '__main__':
     args = parser.parse_args()
-    main(*args)
+    main(vars(args).values())
     sys.exit(0)
