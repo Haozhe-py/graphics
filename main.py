@@ -17,7 +17,7 @@ plt.rcParams['axes.unicode_minus'] = False
 
 # Main function
 def main(file, xkey, ykey, fmt):
-    print(file, xkey, ykey, fmt)
+    # print(file, xkey, ykey, fmt)
 
     data = pd.read_csv(file)
 
