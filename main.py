@@ -8,27 +8,34 @@ import sys
 parser = argparse.ArgumentParser(description='Draw a graphic from a CSV file.')
 parser.add_argument('-f', '--file', help='File path of the CSV file')
 parser.add_argument('-xkey', '--x-key', default='x', help='Key of the x-axis')
-parser.add_argument('-ykey', '--y-key', default='y', help='Key of the y-axis')
+parser.add_argument('-ykey', '--y-key', default=['y'], nargs='*', help='Keys of the y-axis')
+parser.add_argument('-xlabel', '--x-label', default='X-Axis', help='Label of the x-axis')
+parser.add_argument('-ylabel', '--y-label', default='Y-Axis', help='Label of the y-axis')
+parser.add_argument('-t', '--title', default='Graphic', help='Title of the graphic')
 parser.add_argument('-fmt', default='png', help='The format of output file')
 
 # Solve problems of Matplotlib
 plt.rcParams['font.sans-serif'] = ['SimHei']
 plt.rcParams['axes.unicode_minus'] = False  
+plt.grid(True, linestyle='--', color='gray', linewidth=0.5)
 
 # Main function
-def main(file, xkey, ykey, fmt):
-    # print(file, xkey, ykey, fmt)
+def main(file, xkey, ykeys, xlabel, ylabel, title, fmt):
 
     data = pd.read_csv(file)
 
-    xs = np.array(data[xkey])
-    ys = np.array(data[ykey])
-
-    plt.xlabel(xkey, fontsize=12)
-    plt.ylabel(ykey, fontsize=12)
+    for ykey in ykeys:
+        xs = np.array(data[xkey])
+        ys = np.array(data[ykey])
+        plt.plot(xs, ys, label=ykey)
+    
+    plt.xlabel(xlabel, fontsize=12)
+    plt.ylabel(ylabel, fontsize=12)
+    plt.title(title, fontsize=16)
+    plt.legend()
 
     output_name = f'output{"." if fmt[0]!="." else ""}{fmt}'
-    plt.plot(xs, ys)
+    
     plt.savefig(output_name, bbox_inches='tight')
     print(f'Graphic saved to {output_name} successfully. ')
 
@@ -37,5 +44,5 @@ def main(file, xkey, ykey, fmt):
 # Run
 if __name__ == '__main__':
     args = parser.parse_args()
-    main(args.file, args.x_key, args.y_key, args.fmt)
+    main(args.file, args.x_key, args.y_key, args.x_label, args.y_label, args.title, args.fmt)
     sys.exit(0)
